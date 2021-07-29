@@ -151,13 +151,6 @@ function App() {
     
   }
 
-  
-
-  
-
-  
-
-
   return (
     <div style={styles.container}>
       <h1 style={styles.header}>React Calculator</h1>
