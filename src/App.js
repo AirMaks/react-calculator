@@ -12,40 +12,40 @@ function App() {
   const getSign = (sign) => {
      
     if(num1 === '') return false;
-    setSigned(signed = false)
-    setSign(() => sign)
+    setSigned(false)
+    setSign(sign)
 
     if(total) {
-      setNum1(num1 = total);
-      setNum2(num2 = '')
-      setTotal(total = '')
+      setNum1(total);
+      setNum2('')
+      setTotal('')
     } 
   }
 
   const getNum = (num) => {
     if(total) return false;
-    signed ? setNum1(() => num1.replace('', '') + num) : setNum2(() => num2.replace('', '') + num)
+    signed ? setNum1(num1.replace('', '') + num) : setNum2(num2.replace('', '') + num)
   }
 
   const clear = () => {
-    setNum1(num1 = '');
-    setNum2(num2 = '');
-    setTotal(total = '')
-    setSign(() => sign = '')
-    setSigned(signed = true)
+    setNum1('');
+    setNum2('');
+    setTotal('')
+    setSign('')
+    setSigned(true)
   }
 
 
   const getTotal = () => {
 
     if(sign === '-') {
-      setTotal(total = +num1 - +num2)
+      setTotal(+num1 - +num2)
     } else if(sign === '+') {
-      setTotal(total = +num1 + +num2)
+      setTotal(+num1 + +num2)
     } else if(sign === '*') {
-      setTotal(total = +num1 * +num2)
+      setTotal(+num1 * +num2)
     } else if(sign === '/') {
-      setTotal(total = +num1 / +num2)
+      setTotal(+num1 / +num2)
     }
     
   }
