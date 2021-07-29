@@ -82,7 +82,7 @@ const styles = {
   },
   num_container: {
     display: 'flex',
-    width: '400px'
+    width: 'auto'
   },
   num: {
     borderBottom: '1px solid #111',
@@ -94,7 +94,9 @@ const styles = {
     alignItems: 'center',
     margin: '5px 5px 20px',
     fontFamily: 'Roboto',
-    fontSize: '16px'
+    fontSize: '16px',
+    boxSizing: 'border-box',
+    padding: '0 10px'
   },
 
   sign: {
@@ -117,6 +119,12 @@ function App() {
   const getSign = (sign) => {
     setSigned(signed = false)
     setSign(() => sign)
+
+    if(total) {
+      setNum1(num1 = total);
+      setNum2(num2 = '')
+      setTotal(total = '')
+    }
   }
 
   const getNum = (num) => {
