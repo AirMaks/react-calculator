@@ -1,112 +1,5 @@
 import React, {useState} from "react";
-
-const styles = {
-  container: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'column'
-  },
-  header: {
-    color: '#222',
-    fontFamily: 'Roboto',
-    fontWeight: 400,
-    marginTop: '50px',
-    marginBottom: '60px'
-  },
-  calculator: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
-    width: '400px',
-    fontSize: '20px',
-    fontFamily: 'Roboto',
-    
-  },
-  calculator_item: {
-    width: '30%',
-    height: '100px',
-    border: '1px solid rgb(65, 214, 111)',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    cursor: 'pointer',
-    margin: '5px',
-    background: 'rgb(65, 214, 111)',
-  },
-  calculator_item_sign: {
-    width: '30%',
-    height: '100px',
-    border: '1px solid #ccc',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    cursor: 'pointer',
-    margin: '5px',
-    background: '#ccc'
-  },
-
-  calculator_item_dot: {
-    width: '30%',
-    height: '100px',
-    border: '1px solid #4a81ff',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    cursor: 'pointer',
-    margin: '5px',
-    background: '#4a81ff'
-  },
-
-  calculator_item_clear: {
-    width: '30%',
-    height: '100px',
-    border: '1px solid #c00',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    cursor: 'pointer',
-    margin: '5px'
-  },
-
-  calculator_item_equal: {
-    width: '30%',
-    height: '100px',
-    border: '1px solid #ccc',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    cursor: 'pointer',
-    margin: '5px',
-    
-  },
-  num_container: {
-    display: 'flex',
-    width: 'auto'
-  },
-  num: {
-    borderBottom: '1px solid #111',
-    width: 'auto',
-    minWidth: '122px',
-    height: '40px',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    margin: '5px 5px 20px',
-    fontFamily: 'Roboto',
-    fontSize: '16px',
-    boxSizing: 'border-box',
-    padding: '0 10px'
-  },
-
-  sign: {
-    height: '40px',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    margin: '5px 0'
-  }
-};
+import './App.css';
 
 function App() {
 
@@ -117,6 +10,8 @@ function App() {
   let [signed, setSigned] = useState(true);
 
   const getSign = (sign) => {
+     
+    if(num1 === '') return false;
     setSigned(signed = false)
     setSign(() => sign)
 
@@ -124,16 +19,12 @@ function App() {
       setNum1(num1 = total);
       setNum2(num2 = '')
       setTotal(total = '')
-    }
+    } 
   }
 
   const getNum = (num) => {
-    if(signed) {
-      setNum1(() => num1.replace('', '') + num)
-    } else {
-      setNum2(() => num2.replace('', '') + num)
-    }
-    
+    if(total) return false;
+    signed ? setNum1(() => num1.replace('', '') + num) : setNum2(() => num2.replace('', '') + num)
   }
 
   const clear = () => {
@@ -160,36 +51,35 @@ function App() {
   }
 
   return (
-    <div style={styles.container}>
-      <h1 style={styles.header}>React Calculator</h1>
-      <div style={styles.num_container}>
-        <div style={styles.num}>{num1}</div>
-        <div style={styles.sign}>{sign}</div>
-        <div style={styles.num}>{num2}</div>
-        <div style={styles.sign}> = </div>
-        <div style={styles.num}>{total}</div>
+    <div className='container'>
+      <h1 className='header'>React Calculator</h1>
+      <div className='num_container'>
+        <div className='num'>{num1}</div>
+        <div className='sign'>{sign}</div>
+        <div className='num'>{num2}</div>
+        <div className='sign'> = </div>
+        <div className='num'>{total}</div>
       </div>
-      <div style={styles.calculator}>
-        <div style={styles.calculator_item} onClick={e => getNum(e.target.innerHTML)}>1</div>
-        <div style={styles.calculator_item} onClick={e => getNum(e.target.innerHTML)}>2</div>
-        <div style={styles.calculator_item} onClick={e => getNum(e.target.innerHTML)}>3</div>
-        <div style={styles.calculator_item} onClick={e => getNum(e.target.innerHTML)}>4</div>
-        <div style={styles.calculator_item} onClick={e => getNum(e.target.innerHTML)}>5</div>
-        <div style={styles.calculator_item} onClick={e => getNum(e.target.innerHTML)}>6</div>
-        <div style={styles.calculator_item} onClick={e => getNum(e.target.innerHTML)}>7</div>
-        <div style={styles.calculator_item} onClick={e => getNum(e.target.innerHTML)}>8</div>
-        <div style={styles.calculator_item} onClick={e => getNum(e.target.innerHTML)}>9</div>
+      <div className='calculator'>
+        <div className='calculator_item' onClick={e => getNum(e.target.innerHTML)}>1</div>
+        <div className='calculator_item' onClick={e => getNum(e.target.innerHTML)}>2</div>
+        <div className='calculator_item' onClick={e => getNum(e.target.innerHTML)}>3</div>
+        <div className='calculator_item' onClick={e => getNum(e.target.innerHTML)}>4</div>
+        <div className='calculator_item' onClick={e => getNum(e.target.innerHTML)}>5</div>
+        <div className='calculator_item' onClick={e => getNum(e.target.innerHTML)}>6</div>
+        <div className='calculator_item' onClick={e => getNum(e.target.innerHTML)}>7</div>
+        <div className='calculator_item' onClick={e => getNum(e.target.innerHTML)}>8</div>
+        <div className='calculator_item' onClick={e => getNum(e.target.innerHTML)}>9</div>
+        <div className='calculator_item_dot' onClick={e => getNum(e.target.innerHTML)}>.</div>
+        <div className='calculator_item' onClick={e => getNum(e.target.innerHTML)}>0</div>
+
+        <div className='calculator_item_sign' onClick={e => getSign(e.target.innerHTML)}>*</div>
+        <div className='calculator_item_sign' onClick={e => getSign(e.target.innerHTML)}>/</div>
+        <div className='calculator_item_sign' onClick={e => getSign(e.target.innerHTML)}>+</div>
+        <div className='calculator_item_sign' onClick={e => getSign(e.target.innerHTML)}>-</div>
         
-        <div style={styles.calculator_item_dot} onClick={e => getNum(e.target.innerHTML)}>.</div>
-        <div style={styles.calculator_item} onClick={e => getNum(e.target.innerHTML)}>0</div>
-        <div style={styles.calculator_item_sign} onClick={e => getSign(e.target.innerHTML)}>*</div>
-        
-        <div style={styles.calculator_item_sign} onClick={e => getSign(e.target.innerHTML)}>/</div>
-        <div style={styles.calculator_item_sign} onClick={e => getSign(e.target.innerHTML)}>+</div>
-        <div style={styles.calculator_item_sign} onClick={e => getSign(e.target.innerHTML)}>-</div>
-        
-        <div style={styles.calculator_item_clear} onClick={clear}>Clear</div>
-        <div style={styles.calculator_item_equal} onClick={getTotal}>=</div>
+        <div className='calculator_item_clear' onClick={clear}>Clear</div>
+        <div className='calculator_item_equal' onClick={getTotal}>=</div>
       </div>
     </div>
   );
